@@ -12,26 +12,35 @@ export default function TodoList() {
 
   return(
     <div className='todo-container'>
-      <div className='input-todo'>
+        <div className='input-todo'>
+        
         <input 
           type='text' 
           name='todo' 
+          value={todo}
           onChange={handleChange} 
         />
 
-        <button onClick={() => dispatch({type: 'ADD_TODO', payload: todo})}>
+
+        <button onClick={() => {
+          dispatch({type: 'ADD_TODO', payload: todo});
+          }}
+        >
           Add Todo Item
-          </button>
-        <button onClick={() => dispatch({type: 'REMOVE_COMPLETED'})}>
+        </button>
+        <button onClick={() => {
+          dispatch({type: 'REMOVE_COMPLETED'});
+          }}
+        >
           Remove Completed Items
 
-           </button>
+        </button> 
       </div>
 
       {
         state.map(todoItem => {
           return(
-            <div className='todo-item'>
+            <div className='todo-item' key={todoItem.id}>
               {
                 !todoItem.completed ? 
                 (
@@ -53,7 +62,6 @@ export default function TodoList() {
           )
         })
       }
-      
     </div>
   )
 }

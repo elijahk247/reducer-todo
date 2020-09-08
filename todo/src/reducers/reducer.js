@@ -1,10 +1,12 @@
 import React from 'react'
 
-export const initialTodos = {
+export const initialTodos = [
+  {
   item: 'Learn about reducers',
   completed: false,
   id: 389298759
-}
+  }
+]
 
 export const todoReducer = (state, action) => {
   switch (action.type) {
@@ -20,7 +22,7 @@ export const todoReducer = (state, action) => {
       return state.map((todo) => (todo.id === action.payload ? { ...todo, completed: !todo.completed} : todo));
 
       case 'REMOVE_COMPLETED':
-        return state.filer((todo) => !todo.completed);
+        return state.filter((todo) => !todo.completed);
       
       default:
         return state;
